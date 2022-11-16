@@ -1,0 +1,41 @@
+.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace multiple_inheritance_using_interfaces
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            EnginePart1 e1 = new Engine();
+            Response.Write (e1.Pipe());
+            EnginePart2 e2 = new Engine();
+            Response.Write (e2.Gear());
+        }
+    }
+    class Engine : EnginePart1, EnginePart2
+    {
+        public string Pipe()
+        {
+            return "Pipe";
+        }
+        public string Gear()
+        {
+            return "Gear";
+        }
+    }
+    interface EnginePart1
+    {
+        string Pipe();
+    }
+    interface EnginePart2
+    {
+        string Gear();
+    }
+}

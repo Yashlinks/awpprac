@@ -1,0 +1,72 @@
+<div style="background-color: #CCFFFF; border-style: solid; position: absolute; top: 127px; left: 364px; width: 378px; height: 389px;">
+            &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="Red" Text="Login"></asp:Label>
+            <br />
+            <br />
+&nbsp;<br />
+&nbsp;
+            <asp:Label ID="Label2" runat="server" Font-Bold="True" Text="User Name "></asp:Label>
+&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="name_txt" runat="server" Height="26px" Width="214px" TextMode="MultiLine"></asp:TextBox>
+            <br />
+&nbsp;<br />
+&nbsp;<br />
+&nbsp;
+            <asp:Label ID="Label3" runat="server" Font-Bold="True" Text="Password"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="pass_txt" runat="server" Height="28px" Width="208px" TextMode="MultiLine"></asp:TextBox>
+            <br />
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="submit_btn" runat="server" Font-Bold="True" Height="33px" OnClick="submit_btn_Click" Text="SaveContents" Width="116px" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="restore_btn" runat="server" Font-Bold="True" Height="33px" OnClick="restore_btn_Click" Text="LoadContents" Width="120px" />
+            <br />
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="msg_lbl" runat="server" Font-Bold="True" ForeColor="#00CC00"></asp:Label>
+        </div>
+.........................................................................................................
+
+.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace _5_C__View_State_Management
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void submit_btn_Click(object sender, EventArgs e)
+        {
+            msg_lbl.Text = "Login Successfull";
+            ViewState["User Name"] = name_txt.Text;
+            ViewState["Password"] = pass_txt.Text;
+            name_txt.Text = pass_txt.Text = "";
+
+        }
+
+        protected void restore_btn_Click(object sender, EventArgs e)
+        {
+            if (ViewState["User Name"]!=null)
+            {
+                name_txt.Text= ViewState["User Name"].ToString();
+            }
+            if (ViewState["Password"] != null)
+            {
+                pass_txt.Text = ViewState["Password"].ToString();
+            }
+        }
+    }
+}

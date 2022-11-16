@@ -1,0 +1,133 @@
+
+        <div style="border-style: solid; position: absolute; top: 43px; left: 48px; width: 591px; height: 586px;">
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label6" runat="server" Text="ID :- "></asp:Label>
+&nbsp;
+            <asp:TextBox ID="id_txt" runat="server" Height="32px" Width="298px"></asp:TextBox>
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label1" runat="server" Text="Roll No :-"></asp:Label>
+&nbsp;&nbsp;
+            <asp:TextBox ID="roll_txt" runat="server" Height="28px" Width="281px"></asp:TextBox>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label2" runat="server" Text="Name :-"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="name_txt" runat="server" Height="28px" Width="295px"></asp:TextBox>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label3" runat="server" Text="Class :-"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="class_txt" runat="server" Height="29px" Width="295px"></asp:TextBox>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label4" runat="server" Text="Contact No :-"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="contact_txt" runat="server" Height="30px" Width="254px"></asp:TextBox>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label5" runat="server" Text="Email :-"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="email_txt" runat="server" Height="31px" Width="283px"></asp:TextBox>
+            <br />
+            <br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="insert_btn" runat="server" Font-Bold="True" Height="30px" OnClick="insert_btn_Click" Text="Insert" Width="103px" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="delete_btn" runat="server" Font-Bold="True" Height="32px" Text="Delete" Width="93px" OnClick="delete_btn_Click" />
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="msg_lbl" runat="server"></asp:Label>
+        </div>
+        <div style="border-style: solid; position: absolute; top: 55px; left: 770px; width: 655px; height: 558px;">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1">
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
+                    <asp:BoundField DataField="Roll" HeaderText="Roll" SortExpression="Roll" />
+                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                    <asp:BoundField DataField="Class" HeaderText="Class" SortExpression="Class" />
+                    <asp:BoundField DataField="Contact" HeaderText="Contact" SortExpression="Contact" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                </Columns>
+            </asp:GridView>
+            <br />
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:student1ConnectionString %>" SelectCommand="SELECT * FROM [studentinfo]"></asp:SqlDataSource>
+        </div>
+    </form>
+</body>
+</html>
+
+..................................................................
+
+webform1.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace _7C_insert_delete_record__using_execute_non_query_
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Gaurav Naik\\Documents\\student1.mdf\";Integrated Security=True;Connect Timeout=30");
+        SqlCommand cmd;
+        SqlDataReader dr;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void insert_btn_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            String str;
+            str = "INSERT INTO studentinfo(Id,Roll ,Name, Class, Contact, Email)VALUES('" + id_txt.Text + "','" + roll_txt.Text + "','" + name_txt.Text + "','" +
+                class_txt.Text + "','" + contact_txt.Text + "','" + email_txt.Text + "')";
+            cmd = new SqlCommand(str, con);
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                int result = cmd.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    msg_lbl.Text = "Student Details Inserted Successfully";
+                }
+                else
+                {
+                    msg_lbl.Text = "Failed to Saved Student Details";
+                }
+            }
+           catch(SqlException ex)
+            {
+                msg_lbl.Text =ex.Message;
+            }
+            finally
+            {
+                con.Close();
+            }
+            id_txt.Text = "";
+            roll_txt.Text = "";
+            name_txt.Text = "";
+            class_txt.Text = "";
+            contact_txt.Text = "";
+            email_txt.Text = "";
+        }

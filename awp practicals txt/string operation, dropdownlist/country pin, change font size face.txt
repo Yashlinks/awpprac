@@ -1,0 +1,51 @@
+dropdownlist.aspx
+
+ <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                <asp:ListItem Value="99">IND</asp:ListItem>
+                <asp:ListItem Value="100">BAN</asp:ListItem>
+                <asp:ListItem Value="98">CHI</asp:ListItem>
+            </asp:DropDownList>
+            <asp:TextBox ID="TextBox1" runat="server" Height="32px" Width="184px"></asp:TextBox>
+
+
+drodownlist.aspx.cs
+
+ protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TextBox1.Text = DropDownList1.SelectedValue.ToString();
+        }
+--------------------------------------------------------------------
+radiobutton.aspx
+
+
+                  <asp:Label ID="Label1" runat="server" Text="Welcome"></asp:Label>
+
+            <asp:Label ID="Label2" runat="server" Text="Font Size :-"></asp:Label>
+          <asp:Label ID="Label3" runat="server" Text="Font Faces :-"></asp:Label>
+          <br />
+          <asp:RadioButton ID="Radiosize1" runat="server"  Text="15" AutoPostBack="True" GroupName="size" OnCheckedChanged="Radiosize1_CheckedChanged" />
+          <asp:RadioButton ID="Radiofont1" runat="server" Text="Curlz MT" AutoPostBack="True" GroupName="faces" OnCheckedChanged="Radiofont1_CheckedChanged" />
+
+            <asp:RadioButton ID="Radiosize2" runat="server" Text="20" AutoPostBack="True" GroupName="size" OnCheckedChanged="Radiosize1_CheckedChanged" />
+          <asp:RadioButton ID="Radiofont2" runat="server" Text="Blackadder ITC" AutoPostBack="True" GroupName="faces" OnCheckedChanged="Radiofont1_CheckedChanged" />
+            <br />
+           <asp:RadioButton ID="Radiosize3" runat="server" Text="25" AutoPostBack="True" GroupName="size" OnCheckedChanged="Radiosize1_CheckedChanged" />
+       <asp:RadioButton ID="Radiofont3" runat="server"  Text="Algerian" AutoPostBack="True" GroupName="faces" OnCheckedChanged="Radiofont1_CheckedChanged" />
+            <br />
+           <asp:RadioButton ID="Radiosize4" runat="server" Text="30" AutoPostBack="True" GroupName="size" OnCheckedChanged="Radiosize1_CheckedChanged" />
+          <asp:RadioButton ID="Radiofont4" runat="server" Text="Goudy Stout" AutoPostBack="True" GroupName="faces" OnCheckedChanged="Radiofont1_CheckedChanged" />
+            <br />
+ 
+
+radiobutton.aspx.cs
+
+    protected void Radiosize1_CheckedChanged(object sender, EventArgs e)
+        {
+           Label1.Font.Size = Convert.ToInt32(((RadioButton)sender).Text);
+        }
+
+        protected void Radiofont1_CheckedChanged(object sender, EventArgs e)
+        {
+            {
+                Label1.Font.Name = ((RadioButton)sender).Text;
+            }

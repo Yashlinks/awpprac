@@ -1,0 +1,41 @@
+add xml file........
+
+<students>>
+   <student>
+	    <rollno>1</rollno>
+	    <sname>abc</sname>
+    </student>
+	<student>
+		<rollno>2</rollno>
+		<sname>xyz</sname>
+	</student>
+	<student>
+		<rollno>3</rollno>
+		<sname>pqr</sname>
+	</student>
+</students>
+--------------------------------------------
+add xsl file
+
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+		<head></head>
+		<body>
+				<xsl:for-each select="students/student">
+					<h1>
+						<xsl:value-of select="sname"/>
+					</h1>
+					<p>
+						<xsl:value-of select="rollno"/>
+					</p>
+					<hr></hr>
+				</xsl:for-each>
+			</body>
+		</html>
+		
+	</xsl:template>
+</xsl:stylesheet>
+-----------------------------------------------------
+Run xml file
