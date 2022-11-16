@@ -1,0 +1,55 @@
+<asp:ListBox ID="ListBox1" runat="server">
+                <asp:ListItem>item1</asp:ListItem>
+                <asp:ListItem>item2</asp:ListItem>
+                <asp:ListItem>item3</asp:ListItem>
+                <asp:ListItem>item4</asp:ListItem>
+                <asp:ListItem>item5</asp:ListItem>
+            </asp:ListBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button1" runat="server" Height="32px" OnClick="Button1_Click" Text="Button" Width="73px" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox1" runat="server" Height="26px" Width="185px"></asp:TextBox>
+            <br />
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dropdownlist<br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                <asp:ListItem>item1</asp:ListItem>
+                <asp:ListItem>item2</asp:ListItem>
+                <asp:ListItem>item3</asp:ListItem>
+                <asp:ListItem>item4</asp:ListItem>
+                <asp:ListItem>item5</asp:ListItem>
+            </asp:DropDownList>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
+                <asp:ListItem>10</asp:ListItem>
+                <asp:ListItem>14</asp:ListItem>
+                <asp:ListItem>18</asp:ListItem>
+                <asp:ListItem>22</asp:ListItem>
+            </asp:DropDownList>
+
+
+..............................................................................
+dropdownlistbox.aspx.cs
+
+protected void Button1_Click(object sender, EventArgs e)
+        {
+            TextBox1.Text = ListBox1.SelectedValue.ToString();
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Label1.Text = DropDownList1.SelectedValue.ToString();
+        }
+
+        protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Label1.Font.Size = Convert.ToInt16(DropDownList2.SelectedValue);
+        }

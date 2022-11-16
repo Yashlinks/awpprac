@@ -1,0 +1,44 @@
+<div style="height: 442px">
+        &nbsp;&nbsp;
+            <asp:GridView ID="GridView1" runat="server">
+            </asp:GridView>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button1" runat="server" Height="34px" OnClick="Button1_Click" Text="Show" Width="82px" />
+        </div>
+
+...............................................................
+
+.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace _8c_Disconnected_Data_access_in_GridView
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Gaurav Naik\\Documents\\employee.mdf\";Integrated Security=True;Connect Timeout=30");
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            da = new SqlDataAdapter("SELECT*from [emp]",con);
+            da.Fill(ds);
+            GridView1.DataSource = ds;
+            GridView1.DataBind();
+        }
+    }
+}
